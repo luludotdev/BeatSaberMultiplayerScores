@@ -6,90 +6,82 @@ import UI from './UI.jsx'
 import checkWS from './helpers/checkWS.js'
 import noise from '../images/noise.png'
 
+const { parse } = require('url')
+
 class App extends Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      input: '',
+      input: 'ws://localhost:3702',
       error: false,
-      ws: null,
+      success: false,
+      url: '',
     }
   }
 
   async checkURL () {
     let { input } = this.state
     try {
-      let ws = await checkWS(input)
-      this.setState({ error: false, ws })
+      let { hostname, port } = parse(await checkWS(input))
+      let url = { hostname, port }
+      this.setState({ error: false, url, success: true })
     } catch (err) {
-      this.setState({ error: true, ws: null })
-    }
-  }
-
-  // Load server automatically on development environment
-  componentDidMount () {
-    if (process.env.NODE_ENV === 'development') {
-      this.setState({ input: 'ws://localhost:3702' }, () => {
-        this.checkURL()
-      })
+      this.setState({ error: true, url: '', success: false })
     }
   }
 
   render () {
-    if (!this.state.ws) {
-      return (
-        <section className='hero is-dark is-fullheight' style={{
-          backgroundImage: `url(${noise})`,
-          backgroundColor: 'hsl(0, 0%, 11%)',
-          overflow: 'hidden',
-        }}>
-          <div className='hero-body'>
-            <div className='container has-text-centered'>
-              <h1 className='title'>Beat Saber Multiplayer Scores</h1>
-              <h2 className='subtitle'><a href='https://github.com/lolPants/BeatSaberMultiplayerScores/blob/master/README.md' target='_blank' rel='noopener noreferrer'>HOW TO USE</a></h2>
+    return (
+      <section className='hero is-dark is-fullheight' style={{
+        backgroundImage: `url(${noise})`,
+        backgroundColor: 'hsl(0, 0%, 11%)',
+        overflow: 'hidden',
+      }}>
+        <div className='hero-body'>
+          <div className='container has-text-centered'>
+            <h1 className='title'>Beat Saber Multiplayer Scores</h1>
+            <h2 className='subtitle'><a href='https://github.com/lolPants/BeatSaberMultiplayerScores/blob/master/README.md' target='_blank' rel='noopener noreferrer'>HOW TO USE</a></h2>
 
-              <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <div className='field has-addons is-fullwidth'>
-                  <div className='control' style={{ maxWidth: '550px', width: '56vw' }}>
-                    <input
-                      className='input'
-                      type='text'
-                      placeholder='ws://localhost:3702'
-                      value={ this.state.input }
-                      onChange={ e => { this.setState({ input: e.target.value, error: false }) }}
-                      onKeyDown={ e => { if (e.key === 'Enter') { this.checkURL() } } }
-                    />
-                  </div>
-                  <div className='control'>
-                    <a className={ `button ${this.state.error ? 'is-danger' : 'is-info'}` } onClick={() => { this.checkURL() }}>
-                      CONNECT
-                    </a>
-                  </div>
+            <div style={{ display: 'flex', justifyContent: 'center' }}>
+              <div className='field has-addons is-fullwidth'>
+                <div className='control' style={{ maxWidth: '550px', width: '56vw' }}>
+                  <input
+                    className='input'
+                    type='text'
+                    placeholder='ws://localhost:3702'
+                    value={ this.state.input }
+                    onChange={ e => { this.setState({ input: e.target.value, error: false, success: false }) }}
+                    onKeyDown={ e => { if (e.key === 'Enter') { this.checkURL() } } }
+                  />
+                </div>
+                <div className='control'>
+                  <a className={ `button ${this.state.error ? 'is-danger' : 'is-info'}` } onClick={() => { this.checkURL() }}>
+                    CONNECT
+                  </a>
                 </div>
               </div>
-
-              <Tooltip
-                text={ this.state.error ? 'WebSocket Server Not Found...' : '' }
-                success={ false }
-                error={ this.state.error }
-              />
             </div>
-          </div>
 
-          <div className='hero-foot'>
-            <div className='foot has-text-centered'>
-              <p>
-                Built by <strong>lolPants#0001</strong>
-              </p>
-            </div>
+            <Tooltip
+              text={ this.state.error ? 'WebSocket Server Not Found...' : this.state.url ? 'CLICK HERE' : '' }
+              href={ this.state.url ? `#/${this.state.url.hostname}/${this.state.url.port}` : '' }
+              success={ this.state.success }
+              error={ this.state.error }
+            />
           </div>
+        </div>
 
-        </section>
-      )
-    } else {
-      return <UI ws={ this.state.ws } />
-    }
+        <div className='hero-foot'>
+          <div className='foot has-text-centered'>
+            <p>
+              Built by <strong>lolPants#0001</strong>
+            </p>
+          </div>
+        </div>
+
+      </section>
+    )
   }
 }
 
