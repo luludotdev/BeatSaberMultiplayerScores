@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import decode from './helpers/decode.js'
+import '../css/ui.css'
 
 class UI extends Component {
   constructor (props) {
@@ -23,7 +24,7 @@ class UI extends Component {
 
   render () {
     return (
-      <div>
+      <div className='ui'>
         {
           this.state.players.map(player =>
             <div className='player' key={ player.id } >

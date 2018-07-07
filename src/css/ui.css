@@ -1,0 +1,26 @@
+html { background-color: transparent; }
+
+div.ui {
+  font-family: 'Teko';
+  font-size: 5rem;
+  color: white;
+  margin: 20px;
+  text-align: center;
+}
+
+div.player {
+  margin-bottom: .5em;
+}
+
+div.name {
+  font-size: 2em;
+  line-height: 1em;
+  text-shadow: 0px 0px .12em black;
+  margin-bottom: -.15em;
+}
+
+div.score {
+  font-size: 1.5em;
+  line-height: 1em;
+  text-shadow: 0px 0px .12em black;
+}
