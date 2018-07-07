@@ -1,18 +1,48 @@
 import React, { Component } from 'react'
 import '../css/App.css'
 
+import UI from './UI.jsx'
+import checkWS from './checkWS.js'
+
 class App extends Component {
+  constructor (props) {
+    super(props)
+
+    this.state = {
+      input: '',
+      error: false,
+      ws: null,
+    }
+  }
+
+  async checkURL () {
+    let { input } = this.state
+    try {
+      let ws = await checkWS(input)
+      this.setState({ error: false, ws })
+    } catch (err) {
+      this.setState({ error: true, ws: null })
+    }
+  }
+
   render () {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
-    )
+    if (!this.state.ws) {
+      return (
+        <div>
+          <input
+            type='text'
+            placeholder='ws://localhost:3702'
+            value={ this.state.input }
+            onChange={ e => { this.setState({ input: e.target.value }) }}
+            onKeyDown={ e => { if (e.key === 'Enter') { this.checkURL() } } }
+          />
+          <button onClick={ () => this.checkURL() }>Connect to Server</button>
+          <div>{ this.state.error ? 'WebSocket Server Not Found' : '' }</div>
+        </div>
+      )
+    } else {
+      return <UI ws={ this.state.ws } />
+    }
   }
 }
 
