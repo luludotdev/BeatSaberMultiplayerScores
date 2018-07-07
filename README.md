@@ -7,7 +7,7 @@ Hooks into andruzzzhka's multiplayer mod and shows live scores.
 * WebSocket port forwarded correctly (see settings)
 
 ## Usage
-1. Build the project yourself (see below) or visit a [selfhosted version](https://bsaber.jackbaron.com).
+1. Build the project yourself (see below) or visit a [selfhosted version](http://bsaber.jackbaron.com).
 2. Connect to the server using the websocket URL. If the server IP is `saber.jackbaron.com` and the WebSocket port is `3702`, then enter `ws://saber.jackbaron.com:3702`
 3. This will give you a link to the live page. You can then copy and paste this page's URL into OBS.
 
