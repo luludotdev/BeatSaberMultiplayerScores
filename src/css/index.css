@@ -1,6 +1,26 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
-  background: transparent;
+@import url('https://fonts.googleapis.com/css?family=Teko:400,700');
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.foot {
+  padding-bottom: 8px;
+  color: rgba(245, 245, 245, 0.9);
+}
+
+.is-invis {
+  opacity: 0;
+}
+
+.button {
+  transition: all 0.12s;
+}
+
+.hero-body {
+  align-items: initial !important;
+}
+
+h2 {
+  text-decoration: underline;
 }
