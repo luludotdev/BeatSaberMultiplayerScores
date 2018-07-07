@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import '../css/App.css'
 
 import UI from './UI.jsx'
-import checkWS from './checkWS.js'
+import checkWS from './helpers/checkWS.js'
 
 class App extends Component {
   constructor (props) {
