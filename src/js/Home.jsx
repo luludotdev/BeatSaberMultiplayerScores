@@ -26,6 +26,7 @@ class Home extends Component {
       let url = { hostname, port }
       this.setState({ error: false, url, success: true })
     } catch (err) {
+      console.error(err)
       this.setState({ error: true, url: '', success: false })
     }
   }
