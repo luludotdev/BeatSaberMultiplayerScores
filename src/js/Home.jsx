@@ -2,13 +2,12 @@ import React, { Component } from 'react'
 import 'bulma/css/bulma.css'
 
 import Tooltip from './Tooltip.jsx'
-import UI from './UI.jsx'
 import checkWS from './helpers/checkWS.js'
 import noise from '../images/noise.png'
 
 const { parse } = require('url')
 
-class App extends Component {
+class Home extends Component {
   constructor (props) {
     super(props)
 
@@ -65,7 +64,7 @@ class App extends Component {
 
             <Tooltip
               text={ this.state.error ? 'WebSocket Server Not Found...' : this.state.url ? 'CLICK HERE' : '' }
-              href={ this.state.url ? `#/${this.state.url.hostname}/${this.state.url.port}` : '' }
+              href={ this.state.url ? `#/ws/${this.state.url.hostname}/${this.state.url.port}` : '' }
               success={ this.state.success }
               error={ this.state.error }
             />
@@ -85,4 +84,4 @@ class App extends Component {
   }
 }
 
-export default App
+export default Home

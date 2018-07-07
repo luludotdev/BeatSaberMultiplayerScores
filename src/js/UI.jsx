@@ -10,11 +10,14 @@ class UI extends Component {
 
     this.state = { players: [] }
 
-    this.props.ws.onmessage = this.onMessage.bind(this)
+    // this.props.ws.onmessage = this.onMessage.bind(this)
+    let [,, hostname, port] = this.props.location.pathname.split('/')
+    const ws = new WebSocket(`ws://${hostname}:${port}`)
+    ws.onmessage = this.onMessage.bind(this)
   }
 
   static propTypes = {
-    ws: PropTypes.any.isRequired,
+    location: PropTypes.any,
   }
 
   onMessage (ev) {
