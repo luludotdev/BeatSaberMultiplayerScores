@@ -1,0 +1,7 @@
+version: '3'
+services:
+  web:
+    image: 'lolpants/bs-mp-scores'
+    build: '.'
+    ports:
+    - '3699:80'
