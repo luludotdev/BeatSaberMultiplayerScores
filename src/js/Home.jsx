@@ -12,7 +12,7 @@ class Home extends Component {
     super(props)
 
     this.state = {
-      input: 'ws://localhost:3702',
+      input: '',
       error: false,
       success: false,
       url: '',
