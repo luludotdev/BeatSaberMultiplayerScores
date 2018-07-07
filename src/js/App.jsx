@@ -47,7 +47,7 @@ class App extends Component {
           <div className='hero-body'>
             <div className='container has-text-centered'>
               <h1 className='title'>Beat Saber Multiplayer Scores</h1>
-              <h2 className='subtitle'><a href='' target='_blank' rel='noopener noreferrer'>HOW TO USE</a></h2>
+              <h2 className='subtitle'><a href='https://github.com/lolPants/BeatSaberMultiplayerScores/blob/master/README.md' target='_blank' rel='noopener noreferrer'>HOW TO USE</a></h2>
 
               <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <div className='field has-addons is-fullwidth'>
