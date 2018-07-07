@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "BSM Scores",
+  "name": "Beat Saber Multiplayer Scores",
   "icons": [
     {
       "src": "favicon.ico",
