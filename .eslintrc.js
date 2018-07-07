@@ -13,6 +13,7 @@ module.exports = {
   },
   "globals": {
     "require": true,
+    "process": true,
   },
   "plugins": [
     "react"

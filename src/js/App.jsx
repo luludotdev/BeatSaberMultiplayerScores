@@ -25,6 +25,15 @@ class App extends Component {
     }
   }
 
+  // Load server automatically on development environment
+  componentDidMount () {
+    if (process.env.NODE_ENV === 'development') {
+      this.setState({ input: 'ws://localhost:3702' }, () => {
+        this.checkURL()
+      })
+    }
+  }
+
   render () {
     if (!this.state.ws) {
       return (
