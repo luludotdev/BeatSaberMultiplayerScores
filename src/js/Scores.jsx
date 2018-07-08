@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { decode, opcodes } from './helpers/decode.js'
-import '../css/ui.css'
+import '../css/scores.css'
 
 class Scores extends Component {
   constructor (props) {
