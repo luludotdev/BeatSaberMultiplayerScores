@@ -5,13 +5,11 @@ const ToolTip = props => {
   let isBlank = props.text === ''
   let style = props.success ? 'is-success' : props.error ? 'is-danger' : ''
 
-  if (!props.success) return <p className={ `help ${isBlank ? 'is-invis' : ''} ${style}` }>{ isBlank ? '-' : props.text }</p>
-  else return <p className={ `help ${isBlank ? 'is-invis' : ''} ${style}` }><a href={ props.href }>{ isBlank ? '-' : props.text }</a></p>
+  return <p className={ `help ${isBlank ? 'is-invis' : ''} ${style}` }>{ isBlank ? '-' : props.text }</p>
 }
 
 ToolTip.propTypes = {
-  text: PropTypes.string,
-  href: PropTypes.string,
+  text: PropTypes.any,
   success: PropTypes.bool,
   error: PropTypes.bool,
 }

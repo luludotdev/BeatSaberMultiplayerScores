@@ -12,7 +12,7 @@ class Home extends Component {
     super(props)
 
     this.state = {
-      input: '',
+      input: 'ws://localhost:3702',
       error: false,
       success: false,
       url: '',
@@ -64,8 +64,13 @@ class Home extends Component {
             </div>
 
             <Tooltip
-              text={ this.state.error ? 'WebSocket Server Not Found...' : this.state.url ? 'CLICK HERE' : '' }
-              href={ this.state.url ? `#/ws/${this.state.url.hostname}/${this.state.url.port}` : '' }
+              text={
+                this.state.error ?
+                'WebSocket Server Not Found...' :
+                this.state.url ?
+                <span><a href={ `#/scores/${this.state.url.hostname}/${this.state.url.port}` }>SCORES</a> - <a href={ `#/level/${this.state.url.hostname}/${this.state.url.port}` }>LEVEL NAME</a></span> :
+                 ''
+                }
               success={ this.state.success }
               error={ this.state.error }
             />
