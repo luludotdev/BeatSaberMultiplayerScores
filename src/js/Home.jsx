@@ -66,11 +66,13 @@ class Home extends Component {
             <Tooltip
               text={
                 this.state.error ?
-                'WebSocket Server Not Found...' :
-                this.state.url ?
-                <span><a href={ `#/scores/${this.state.url.hostname}/${this.state.url.port}` }>SCORES</a> - <a href={ `#/level/${this.state.url.hostname}/${this.state.url.port}` }>LEVEL NAME</a></span> :
-                 ''
-                }
+                  'WebSocket Server Not Found...' :
+                  this.state.url ?
+                    <span>
+                      <a href={ `#/scores/${this.state.url.hostname}/${this.state.url.port}` }>SCORES</a> - <a href={ `#/level/${this.state.url.hostname}/${this.state.url.port}` }>LEVEL NAME</a>
+                    </span> :
+                    ''
+              }
               success={ this.state.success }
               error={ this.state.error }
             />
