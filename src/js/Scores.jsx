@@ -34,8 +34,8 @@ class Scores extends Component {
     return (
       <div className='ui'>
         {
-          this.state.players.map(player =>
-            <div className='player' key={ player.id } >
+          this.state.players.map((player, i) =>
+            <div className='player' key={ i } >
               <div className='name'>{ player.name }</div>
               <div className='score'>{ player.score }</div>
             </div>
