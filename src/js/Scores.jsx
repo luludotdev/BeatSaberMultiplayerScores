@@ -12,8 +12,9 @@ class Scores extends Component {
 
     // this.props.ws.onmessage = this.onMessage.bind(this)
     let [,, hostname, port] = this.props.location.pathname.split('/')
-    const ws = new WebSocket(`ws://${hostname}:${port}`)
-    ws.onmessage = this.onMessage.bind(this)
+
+    this.ws = new WebSocket(`ws://${hostname}:${port}`)
+    this.ws.onmessage = this.onMessage.bind(this)
   }
 
   static propTypes = {
@@ -23,6 +24,10 @@ class Scores extends Component {
   onMessage (ev) {
     let players = decode(ev.data)
     this.setState({ players })
+  }
+
+  componentWillUnmount () {
+    this.ws.close()
   }
 
   render () {
