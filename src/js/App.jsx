@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { HashRouter as Router, Switch, Route } from 'react-router-dom'
 
 import Home from './Home.jsx'
-import UI from './UI.jsx'
+import Scores from './Scores.jsx'
 
 class App extends Component {
   render () {
@@ -10,7 +10,7 @@ class App extends Component {
       <Router>
         <Switch>
           <Route exact path='/' component={ Home } />
-          <Route path='/ws' component={ UI } />
+          <Route path='/ws' component={ Scores } />
         </Switch>
       </Router>
     )

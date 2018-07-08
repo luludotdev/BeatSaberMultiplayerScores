@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import decode from './helpers/decode.js'
 import '../css/ui.css'
 
-class UI extends Component {
+class Scores extends Component {
   constructor (props) {
     super(props)
 
@@ -41,4 +41,4 @@ class UI extends Component {
   }
 }
 
-export default UI
+export default Scores
