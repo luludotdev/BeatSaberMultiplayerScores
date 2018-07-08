@@ -6,18 +6,50 @@
  */
 
 /**
+ * @typedef {Object} Level
+ */
+
+/**
+ * @typedef {Object} Packet
+ * @property {string} version
+ * @property {number} opcode
+ * @property {Player[]} playerInfo
+ * @property {Level} level
+ */
+
+/**
  * Decode WS Message Data
  * @param {string} data WS Message
- * @returns {Player[]}
+ * @returns {Packet}
  */
 const decode = data => {
-  let { playerInfos } = JSON.parse(data)
-  let info = playerInfos.map(x => JSON.parse(x))
+  let { version, commandType: opcode, selectedLevelId, playerInfos } = JSON.parse(data)
+  let playerInfo = playerInfos.map(x => JSON.parse(x))
     .map(x => {
       let { playerName, playerId, playerScore } = x
       return { name: playerName, ID: playerId, score: playerScore }
     })
-  return info
+
+  let level
+  if (selectedLevelId) {
+    console.log(selectedLevelId)
+  } else {
+    level = undefined
+  }
+
+  return { version, opcode, playerInfo, level }
 }
 
-export default decode
+const opcodes = {
+  SetServerState: 0,
+  SetLobbyTimer: 1,
+  DownloadSongs: 2,
+  StartSelectedSongLevel: 3,
+  SetPlayerInfos: 4,
+  SetSelectedSong: 5,
+  UpdateRequired: 6,
+  Ping: 7,
+  Kicked: 8,
+}
+
+export { decode, opcodes }

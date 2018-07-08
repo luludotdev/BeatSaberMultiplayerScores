@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import decode from './helpers/decode.js'
+import { decode, opcodes } from './helpers/decode.js'
 import '../css/ui.css'
 
 class Scores extends Component {
@@ -22,8 +22,8 @@ class Scores extends Component {
   }
 
   onMessage (ev) {
-    let players = decode(ev.data)
-    this.setState({ players })
+    let { playerInfo: players, opcode } = decode(ev.data)
+    if (opcode === opcodes.SetPlayerInfos) this.setState({ players })
   }
 
   componentWillUnmount () {
