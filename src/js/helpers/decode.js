@@ -7,6 +7,12 @@
 
 /**
  * @typedef {Object} Level
+ * @property {string} hash
+ * @property {string} name
+ * @property {string} subname
+ * @property {string} author
+ * @property {string} url
+ * @property {number} bpm
  */
 
 /**
@@ -23,16 +29,19 @@
  * @returns {Packet}
  */
 const decode = data => {
-  let { version, commandType: opcode, selectedLevelId, playerInfos } = JSON.parse(data)
-  let playerInfo = playerInfos.map(x => JSON.parse(x))
+  let { version, commandType: opcode, selectedLevelID, playerInfos } = JSON.parse(data)
+  let playerInfo = !playerInfos ? undefined : playerInfos.map(x => JSON.parse(x))
     .map(x => {
       let { playerName, playerId, playerScore } = x
       return { name: playerName, ID: playerId, score: playerScore }
     })
 
   let level
-  if (selectedLevelId) {
-    console.log(selectedLevelId)
+  if (selectedLevelID) {
+    let [hash, name, subname, author, bpm] = selectedLevelID.split('∎')
+    bpm = parseInt(bpm, 10)
+    let url = `https://beatsaver.com/api.php?mode=hashinfo&hash=${hash}`
+    level = { hash, name, subname, author, url, bpm }
   } else {
     level = undefined
   }
