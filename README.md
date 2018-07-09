@@ -2,7 +2,7 @@
 Hooks into andruzzzhka's multiplayer mod and shows live scores and level data.
 
 ## Prerequisites
-* [Beat Saber Multiplayer](https://github.com/andruzzzhka/BeatSaberMultiplayer/) (version 4.3 or later)
+* [Beat Saber Multiplayer](https://github.com/andruzzzhka/BeatSaberMultiplayer/) (version 0.4.3.0 or later)
 * WebSockets enabled on the server (change `WSEnabled` to `true`)
 * WebSocket port forwarded correctly (see settings)
 
