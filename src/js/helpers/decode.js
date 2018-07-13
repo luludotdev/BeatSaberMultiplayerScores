@@ -40,7 +40,7 @@ const decode = data => {
   if (selectedLevelID) {
     let [hash, name, subname, author, bpm] = selectedLevelID.split('∎')
     bpm = parseInt(bpm, 10)
-    let url = `https://beatsaver.com/api.php?mode=hashinfo&hash=${hash}`
+    let url = `https://beatsaver.com/api/songs/search/hash/${hash}`
     level = { hash, name, subname, author, url, bpm }
   } else {
     level = undefined
